@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tic Tac Toe V2</title>
+<style>
+/* Ensuring squares are visible and float correctly */
+.square {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  font-size: 50px;
+  text-align: center;
+  line-height: 100px; /* Vertically centers the X and O */
+  box-sizing: border-box; /* Prevents border from breaking the 3x3 grid */
+}
+
+/* Organizing the squares into a 3x3 grid area */
+#board {
+  width: 300px;
+  height: 300px;
+}
+
+/* Requirement: Turn indicator must be a div with a border */
+#turn-display {
+  border: 2px solid black;
+  padding: 10px;
+  width: 276px;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+<div id="turn-display">It is X's Turn</div>
+
+<div id="board">
+<script>
+/* Task: Remove original HTML divs and use this script instead.
+   NOTE: This code must not be changed per assignment instructions. */
+const NUM_SQUARES = 9;
+for (i=0; i<NUM_SQUARES; i++)
+{
+  id = "sq"+i;
+  document.write( "<div class='square' id='" + id + "'></div>" );
+}
+</script>
+</div>
+
+<script>
+// Using innerHTML to place 2 X's and 1 O
+document.getElementById('sq0').innerHTML = "X";
+document.getElementById('sq1').innerHTML = "X";
+document.getElementById('sq2').innerHTML = "O";
+</script>
+
+</body>
+</html>
