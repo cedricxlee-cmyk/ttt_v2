@@ -65,9 +65,21 @@ for (i=0; i<NUM_SQUARES; i++)
 </div>
 
 <script>
-document.getElementById('sq0').innerHTML = "X";
-document.getElementById('sq1').innerHTML = "X";
-document.getElementById('sq2').innerHTML = "O";
+window.onload = function()
+{
+  var squares = document.querySelectorAll(".square");
+  for (i=0; i<squares.length; i++)
+  {
+    squares[i].onclick = squareHandler;
+  }
+}
+
+function squareHandler()
+{
+  this.innerHTML = "X";
+  var index = this.id.substring(2);
+  alert("Square number: " + index);
+}
 </script>
 
 <input type='button' value='Start Game'>
