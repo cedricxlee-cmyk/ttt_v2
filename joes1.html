@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joe's Hotdogs</title>
+</head>
+<body>
+
+<script>
+
+// =============================================
+// PART 1: Using an Associative Array (slide 155)
+// =============================================
+
+document.write("<h2>Part 1: Menu using Associative Array</h2>");
+document.write("<h3>Joe's Hotdogs Menu</h3>");
+
+var menu = {
+    hotdog:     4.00,
+    fries:      3.50,
+    soda:       1.50,
+    sauerkraut: 1.00
+};
+
+var items = Object.keys(menu);
+items.forEach(function(item) {
+    document.write(item + " - $" + menu[item].toFixed(2) + "<br />");
+});
+
+
+// =============================================
+// PART 2: Using an Object (slide 157)
+// =============================================
+
+document.write("<h2>Part 2: Menu using Object</h2>");
+document.write("<h3>Joe's Hotdogs Menu</h3>");
+
+var menuObj = {
+    "hotdog":     4.00,
+    "fries":      3.50,
+    "soda":       1.50,
+    "sauerkraut": 1.00
+};
+
+var objKeys = Object.keys(menuObj);
+objKeys.forEach(function(item) {
+    document.write(item + " - $" + menuObj[item].toFixed(2) + "<br />");
+});
+
+
+// =============================================
+// PART 3: Using a Class (function method, slide 174)
+// =============================================
+
+document.write("<h2>Part 3: Menu using Class (function method)</h2>");
+document.write("<h3>Joe's Hotdogs Menu</h3>");
+
+function MenuItem(name, price) {
+    this.name  = name;
+    this.price = price;
+}
+
+var menu = [];
+menu["hotdog"] = 4.00;
+menu["fries"] = 3.50;
+menu["soda"] = 1.50;
+menu["sauerkraut"] = 1.00;
+
+menuItems.forEach(function(item) {
+    document.write(item.name + " - $" + item.price.toFixed(2) + "<br />");
+});
+
+</script>
+
+</body>
+</html>

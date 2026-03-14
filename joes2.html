@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joe's Hotdogs</title>
+</head>
+<body>
+
+<script>
+
+// =============================================
+// One construct: function-based class (slide 174)
+// =============================================
+
+function MenuItem(name, price) {
+    this.name  = name;
+    this.price = price;
+}
+
+var menuItems = [
+    new MenuItem("hotdog",     4.00),
+    new MenuItem("fries",      3.50),
+    new MenuItem("soda",       1.50),
+    new MenuItem("sauerkraut", 1.00)
+];
+
+// Display Menu once
+document.write("<h2>Joe's Hotdogs Menu</h2>");
+menuItems.forEach(function(item) {
+    document.write(item.name + " - $" + item.price.toFixed(2) + "<br />");
+});
+
+</script>
+
+
+<h2>Order Here</h2>
+
+<select id="menuSelect">
+</select>
+<br /><br />
+
+<button onclick="addToCart()">Add to Cart</button>
+<br /><br />
+
+<div id="cartDiv">
+    <h3>Shopping Cart</h3>
+    <div id="cartItems"></div>
+</div>
+<br />
+
+<button onclick="checkout()">Checkout</button>
+
+
+<script>
+
+// Build the <select> from menuItems (Part 4.1)
+var select = document.getElementById("menuSelect");
+
+menuItems.forEach(function(item) {
+    var option = document.createElement("option");
+    option.text  = item.name;
+    option.value = item.price;
+    select.add(option);
+});
+
+// Associative array to track quantity, all initialized to 0
+var quantities = {
+    hotdog:     0,
+    fries:      0,
+    soda:       0,
+    sauerkraut: 0
+};
+
+function addToCart() {
+    var select   = document.getElementById("menuSelect");
+    var itemName = select.options[select.selectedIndex].text;
+    quantities[itemName] += 1;
+    updateCart();
+}
+
+function updateCart() {
+    var cartDiv = document.getElementById("cartItems");
+    cartDiv.innerHTML = "";
+
+    var keys = Object.keys(quantities);
+    keys.forEach(function(key) {
+        if (quantities[key] > 0) {
+            cartDiv.innerHTML += key + " x" + quantities[key] + "<br />";
+        }
+    });
+}
+
+function checkout() {
+    var total    = 0;
+    var message  = "Your Order:\n";
+    var hasItems = false;
+
+    menuItems.forEach(function(item) {
+        if (quantities[item.name] > 0) {
+            var itemTotal = quantities[item.name] * item.price;
+            message += item.name + " x" + quantities[item.name] +
+                       " = $" + itemTotal.toFixed(2) + "\n";
+            total += itemTotal;
+            hasItems = true;
+        }
+    });
+
+    if (!hasItems) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    message += "\nOrder Total: $" + total.toFixed(2);
+    alert(message);
+
+    // Clear cart and reset quantities to 0
+    var keys = Object.keys(quantities);
+    keys.forEach(function(key) {
+        quantities[key] = 0;
+    });
+
+    updateCart();
+}
+
+</script>
+
+</body>
+</html>
